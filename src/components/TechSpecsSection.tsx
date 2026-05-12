@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
-import { Cpu, Eye, Zap, Battery, Gauge, Radio } from "lucide-react";
+import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car } from "lucide-react";
 
 const specs = [
   { icon: Cpu, label: "ESP32-S3", detail: "Dual-core 240MHz", color: "text-accent" },
@@ -9,6 +9,8 @@ const specs = [
   { icon: Battery, label: "Battery", detail: "12h continuous use", color: "text-accent" },
   { icon: Gauge, label: "Power Draw", detail: "< 80mA average", color: "text-accent" },
   { icon: Radio, label: "Connectivity", detail: "BLE 5.0 + Wi-Fi", color: "text-accent" },
+  { icon: Car, label: "Vehicle Link", detail: "CAN bus / OBD-II command", color: "text-accent" },
+  { icon: Zap, label: "Autonomy", detail: "Direct parking command", color: "text-accent" },
 ];
 
 const TechSpecsSection = () => (
@@ -26,7 +28,7 @@ const TechSpecsSection = () => (
 
       <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {specs.map((spec, i) => (
-          <ScrollReveal key={spec.label} delay={i * 0.08}>
+          <ScrollReveal key={`${spec.label}-${i}`} delay={i * 0.08}>
             <motion.div
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
