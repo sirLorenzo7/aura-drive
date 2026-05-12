@@ -10,14 +10,14 @@ const HeroSection = () => (
       className="text-center"
     >
       <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-        Introducing DrowseGuard
+        Introducing Awakelens
       </p>
-      <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-foreground md:text-7xl lg:text-8xl">
-        Stay Awake,{" "}
-        <span className="text-gradient-accent">Stay Safe</span>
+      <h1 className="mx-auto max-w-5xl text-5xl font-bold leading-[1.08] tracking-tight text-foreground md:text-7xl lg:text-8xl">
+        Smart Glasses that Detect Drowsiness{" "}
+        <span className="text-gradient-accent">and Safely Park Your Car</span>
       </h1>
-      <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
-        Smart glasses that detect drowsiness in real-time — keeping you alert on every journey.
+      <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+        When fatigue hits, Awakelens doesn't just warn you — it takes control. Autonomous safety for every journey.
       </p>
     </motion.div>
 
@@ -27,11 +27,10 @@ const HeroSection = () => (
       transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       className="relative mt-12 w-full max-w-2xl"
     >
-      {/* 3D model iframe placeholder — replace src with your 3D viewer URL */}
       <div className="glow-accent relative mx-auto aspect-square max-w-lg overflow-hidden rounded-3xl bg-secondary">
         <img
           src={heroImg}
-          alt="DrowseGuard Smart Glasses"
+          alt="Awakelens Smart Glasses"
           className="h-full w-full object-contain p-8"
         />
         <div className="absolute inset-0 flex items-end justify-center pb-6">
