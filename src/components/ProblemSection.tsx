@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import { AlertTriangle } from "lucide-react";
 
@@ -10,24 +11,70 @@ const stats = [
 const videoEmbeds = [
   {
     id: "2jDllo6fdBg",
-    title: "Video Link 1",
-    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=2jDllo6fdBg",
+    title: "Drowsy driving awareness video 1",
+    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=2jDllo6fdBg",
   },
   {
     id: "4hCO_2vTGIo",
-    title: "Video Link 2",
-    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=4hCO_2vTGIo",
+    title: "Drowsy driving awareness video 2",
+    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=4hCO_2vTGIo",
   },
   {
     id: "OZxcV3oKhgQ",
-    title: "Video Link 3",
-    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=OZxcV3oKhgQ",
+    title: "Drowsy driving awareness video 3",
+    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=OZxcV3oKhgQ",
   },
 ];
 
+const LazyVideo = ({ embedUrl, title }: { embedUrl: string; title: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "150px", threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_50px_-10px_hsl(var(--accent)/0.3)]"
+    >
+      <div className="relative aspect-video pointer-events-none">
+        {visible ? (
+          <iframe
+            className="absolute inset-0 h-full w-full"
+            src={embedUrl}
+            title={title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary to-card" />
+        )}
+      </div>
+    </div>
+  );
+};
+
 const ProblemSection = () => (
   <section id="problem" className="section-padding bg-section-alt">
-    <div className="mx-auto max-w-6xl px-6">
+    <div className="mx-auto max-w-7xl px-6">
       <ScrollReveal>
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="h-5 w-5 text-accent" />
@@ -60,28 +107,12 @@ const ProblemSection = () => (
       </div>
 
       <ScrollReveal delay={0.2}>
-        <div className="mt-16">
-          <p className="mb-6 text-sm font-medium uppercase tracking-[0.15em] text-accent">
-            See the dangers firsthand
-          </p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {videoEmbeds.map((video, i) => (
-              <ScrollReveal key={video.id} delay={i * 0.1}>
-                <div className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_40px_-10px_hsl(var(--accent)/0.25)]">
-                  <div className="relative aspect-video pointer-events-none">
-                    <iframe
-                      className="absolute inset-0 h-full w-full rounded-2xl"
-                      src={video.embedUrl}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      referrerPolicy="strict-origin-when-cross-origin"
-                    />
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+        <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {videoEmbeds.map((video, i) => (
+            <ScrollReveal key={video.id} delay={i * 0.1}>
+              <LazyVideo embedUrl={video.embedUrl} title={video.title} />
+            </ScrollReveal>
+          ))}
         </div>
       </ScrollReveal>
     </div>
