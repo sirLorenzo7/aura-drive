@@ -9,19 +9,19 @@ const stats = [
 
 const videoEmbeds = [
   {
-    id: 1,
+    id: "2jDllo6fdBg",
     title: "Video Link 1",
-    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg",
+    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=2jDllo6fdBg",
   },
   {
-    id: 2,
+    id: "4hCO_2vTGIo",
     title: "Video Link 2",
-    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo",
+    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=4hCO_2vTGIo",
   },
   {
-    id: 3,
+    id: "OZxcV3oKhgQ",
     title: "Video Link 3",
-    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ",
+    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ?autoplay=1&mute=1&loop=1&controls=0&rel=0&playlist=OZxcV3oKhgQ",
   },
 ];
 
@@ -67,8 +67,8 @@ const ProblemSection = () => (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {videoEmbeds.map((video, i) => (
               <ScrollReveal key={video.id} delay={i * 0.1}>
-                <div className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10">
-                  <div className="relative aspect-video bg-secondary">
+                <div className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_40px_-10px_hsl(var(--accent)/0.25)]">
+                  <div className="relative aspect-video pointer-events-none">
                     <iframe
                       className="absolute inset-0 h-full w-full rounded-2xl"
                       src={video.embedUrl}
