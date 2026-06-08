@@ -2,26 +2,26 @@ import ScrollReveal from "./ScrollReveal";
 import { AlertTriangle } from "lucide-react";
 
 const stats = [
-  { value: "100K+", label: "Drowsy driving crashes per year in the US" },
-  { value: "1,550", label: "Fatalities annually from drowsy driving" },
-  { value: "21%", label: "Of fatal crashes involve a drowsy driver" },
+  { value: "100,000+", label: "Over 100,000 police-reported crashes annually in the US are caused by drowsy driving." },
+  { value: "20%", label: "Up to 20% of all fatal highway accidents involve driver fatigue or microsleep." },
+  { value: "100 Meters", label: "A 3-second microsleep at highway speeds means the car travels over 100 meters completely uncontrolled." },
 ];
 
-const videoPlaceholders = [
+const videoEmbeds = [
   {
     id: 1,
     title: "Video Link 1",
-    url: "https://youtu.be/2jDllo6fdBg?si=2JhyCeZILyvvix0-",
+    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg",
   },
   {
     id: 2,
     title: "Video Link 2",
-    url: "https://youtu.be/4hCO_2vTGIo?si=pUskHOp08eu_OLY4",
+    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo",
   },
   {
     id: 3,
     title: "Video Link 3",
-    url: "https://youtu.be/OZxcV3oKhgQ?si=Gxcom-SxLYZZDYK6",
+    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ",
   },
 ];
 
@@ -65,25 +65,18 @@ const ProblemSection = () => (
             See the dangers firsthand
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {videoPlaceholders.map((video, i) => (
+            {videoEmbeds.map((video, i) => (
               <ScrollReveal key={video.id} delay={i * 0.1}>
                 <div className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-accent/40 hover:shadow-lg hover:shadow-accent/10">
                   <div className="relative aspect-video bg-secondary">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 transition-transform duration-300 group-hover:scale-110">
-                        <svg className="h-6 w-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                      <p className="mt-3 text-sm font-medium text-muted-foreground">
-                        {video.title}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-muted-foreground truncate">
-                      Replace with: {video.url}
-                    </p>
+                    <iframe
+                      className="absolute inset-0 h-full w-full rounded-2xl"
+                      src={video.embedUrl}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
+                    />
                   </div>
                 </div>
               </ScrollReveal>
