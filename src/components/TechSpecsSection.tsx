@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import HardwareHologram from "./HardwareHologram";
 import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car } from "lucide-react";
 
 const specs = [
