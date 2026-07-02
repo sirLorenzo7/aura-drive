@@ -27,6 +27,12 @@ const TechSpecsSection = () => (
         </h2>
       </ScrollReveal>
 
+      <ScrollReveal delay={0.15}>
+        <div className="mt-16">
+          <HardwareHologram />
+        </div>
+      </ScrollReveal>
+
       <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {specs.map((spec, i) => (
           <ScrollReveal key={`${spec.label}-${i}`} delay={i * 0.08}>
