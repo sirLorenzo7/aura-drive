@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import HardwareHologram from "./HardwareHologram";
 import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car } from "lucide-react";
 
 const specs = [
@@ -24,6 +25,12 @@ const TechSpecsSection = () => (
           Engineered for{" "}
           <span className="text-muted-foreground">precision.</span>
         </h2>
+      </ScrollReveal>
+
+      <ScrollReveal delay={0.15}>
+        <div className="mt-16">
+          <HardwareHologram />
+        </div>
       </ScrollReveal>
 
       <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
