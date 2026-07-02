@@ -1,5 +1,7 @@
 import ScrollReveal from "./ScrollReveal";
 import { Eye, Zap, Car } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import demoVideo from "@/assets/awakelens-demo.mp4.asset.json";
 
 const steps = [
   {
@@ -59,18 +61,7 @@ const SolutionSection = () => (
       </div>
 
       <ScrollReveal delay={0.2}>
-        <div className="mt-16 overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="flex aspect-video items-center justify-center bg-secondary">
-            <div className="text-center">
-              <p className="text-sm font-medium text-muted-foreground">
-                Practical Demo Placeholder
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground/60">
-                Embed a video showing IR sensor detection & autonomous parking command
-              </p>
-            </div>
-          </div>
-        </div>
+        <DemoVideo />
       </ScrollReveal>
     </div>
   </section>
