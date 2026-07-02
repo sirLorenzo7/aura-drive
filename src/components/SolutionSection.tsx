@@ -27,9 +27,58 @@ const steps = [
   },
 ];
 
+const DemoVideo = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setVisible(true);
+            videoRef.current?.play().catch(() => {});
+            obs.disconnect();
+          }
+        });
+      },
+      { rootMargin: "150px", threshold: 0.25 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="mt-16 overflow-hidden rounded-2xl border border-accent/20 bg-card"
+      style={{ boxShadow: "0 0 60px -20px hsl(var(--accent) / 0.35)" }}
+    >
+      <div className="relative aspect-video bg-secondary pointer-events-none">
+        {visible && (
+          <video
+            ref={videoRef}
+            src={demoVideo.url}
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
 const SolutionSection = () => (
   <section id="solution" className="section-padding">
     <div className="mx-auto max-w-6xl px-6">
+
       <ScrollReveal>
         <p className="text-sm font-medium uppercase tracking-[0.15em] text-accent mb-4">
           How It Works
