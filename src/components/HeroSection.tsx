@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroImg from "@/assets/hero-glasses.png";
+import HardwareModel from "./HardwareModel";
 
 const HeroSection = () => (
   <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
@@ -25,21 +25,18 @@ const HeroSection = () => (
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative mt-12 w-full max-w-2xl"
+      className="relative mt-12 w-full max-w-4xl"
     >
-      <div className="glow-accent relative mx-auto aspect-square max-w-lg overflow-hidden rounded-3xl bg-secondary">
-        <img
-          src={heroImg}
-          alt="Awakelens Smart Glasses"
-          className="h-full w-full object-contain p-8"
-        />
-        <div className="absolute inset-0 flex items-end justify-center pb-6">
-          <span className="rounded-full bg-card/80 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm">
-            3D model placeholder — embed iframe here
+      <div className="glow-accent relative mx-auto h-[420px] w-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-secondary/60 to-card md:h-[520px]">
+        <HardwareModel />
+        <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
+          <span className="rounded-full bg-card/70 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-sm">
+            Drag to rotate
           </span>
         </div>
       </div>
     </motion.div>
+
 
     <motion.div
       initial={{ opacity: 0 }}
