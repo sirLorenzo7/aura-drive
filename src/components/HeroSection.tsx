@@ -27,7 +27,7 @@ const HeroSection = () => (
       transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
       className="relative mt-12 w-full max-w-4xl"
     >
-      <div className="glow-accent relative mx-auto h-[420px] w-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-secondary/60 to-card md:h-[520px]">
+      <div className="glow-accent relative mx-auto h-[420px] w-full overflow-hidden rounded-3xl border border-border/40 bg-transparent md:h-[520px]">
         <HardwareModel />
         <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
           <span className="rounded-full bg-card/70 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-sm">
