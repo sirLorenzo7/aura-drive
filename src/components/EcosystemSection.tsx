@@ -1,9 +1,8 @@
 import ScrollReveal from "./ScrollReveal";
-import { Smartphone, Watch, Wifi, Bell } from "lucide-react";
+import { Smartphone, Wifi, Bell } from "lucide-react";
 
 const connections = [
   { icon: Smartphone, label: "Mobile App", desc: "Real-time monitoring & trip history" },
-  { icon: Watch, label: "Smartwatch", desc: "Wrist vibrations for silent alerts" },
   { icon: Wifi, label: "BLE / Wi-Fi", desc: "Seamless wireless connectivity" },
   { icon: Bell, label: "Push Alerts", desc: "Instant notifications to contacts" },
 ];
@@ -24,7 +23,7 @@ const EcosystemSection = () => (
         </p>
       </ScrollReveal>
 
-      <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {connections.map((c, i) => (
           <ScrollReveal key={c.label} delay={i * 0.1}>
             <div className="flex flex-col items-center rounded-2xl border border-border bg-card p-6 text-center transition-all duration-300 hover:border-accent/30">
@@ -37,21 +36,6 @@ const EcosystemSection = () => (
           </ScrollReveal>
         ))}
       </div>
-
-      <ScrollReveal delay={0.2}>
-        <div className="mt-16 overflow-hidden rounded-2xl border border-border bg-card">
-          <div className="flex aspect-video items-center justify-center bg-secondary">
-            <div className="text-center">
-              <p className="text-sm font-medium text-muted-foreground">
-                Ecosystem Demo Placeholder
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground/60">
-                Embed a video showing alerts on phone & smartwatch
-              </p>
-            </div>
-          </div>
-        </div>
-      </ScrollReveal>
     </div>
   </section>
 );
