@@ -4,7 +4,7 @@ import HardwareHologram from "./HardwareHologram";
 import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car } from "lucide-react";
 
 const specs = [
-  { icon: Cpu, label: "ESP32-S3", detail: "Dual-core 240MHz", color: "text-accent" },
+  { icon: Cpu, label: "ESP32", detail: "Dual-core 240MHz", color: "text-accent" },
   { icon: Eye, label: "IR Sensor", detail: "940nm wavelength", color: "text-accent" },
   { icon: Zap, label: "Latency", detail: "< 50ms response", color: "text-accent" },
   { icon: Battery, label: "Battery", detail: "12h continuous use", color: "text-accent" },
