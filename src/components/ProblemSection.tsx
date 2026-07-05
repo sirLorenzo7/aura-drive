@@ -66,9 +66,9 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
   return (
     <div
       ref={wrapRef}
-      className="group relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_60px_-10px_hsl(var(--accent)/0.35)]"
+      className="group relative mx-auto w-full max-w-[420px] overflow-hidden rounded-3xl border border-border bg-card shadow-[0_0_40px_-15px_hsl(var(--accent)/0.25)] transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_60px_-10px_hsl(var(--accent)/0.4)]"
     >
-      <div className="relative aspect-[9/16] pointer-events-none">
+      <div className="relative aspect-[9/16] w-full">
         {mounted ? (
           <iframe
             ref={iframeRef}
@@ -81,7 +81,9 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
             referrerPolicy="strict-origin-when-cross-origin"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary to-card" />
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-secondary to-card">
+            <div className="h-10 w-10 animate-pulse rounded-full bg-accent/30" />
+          </div>
         )}
       </div>
     </div>
