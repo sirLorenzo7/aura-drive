@@ -123,10 +123,10 @@ const ProblemSection = () => (
       </div>
 
       <ScrollReveal delay={0.2}>
-        <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 flex flex-col items-center gap-16">
           {videoEmbeds.map((video, i) => (
             <ScrollReveal key={video.id} delay={i * 0.1}>
-              <LazyVideo embedUrl={video.embedUrl} title={video.title} />
+              <ScrollVideo id={video.id} title={video.title} />
             </ScrollReveal>
           ))}
         </div>
