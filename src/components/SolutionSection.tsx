@@ -9,14 +9,14 @@ const steps = [
     icon: Eye,
     title: "Detect Drowsiness",
     description:
-      "Smart glasses use advanced infrared sensors and eye-tracking algorithms to continuously monitor blink rate and eye closure patterns in real time.",
+      "Smart glasses use advanced infrared sensors and eye-closure detection algorithms to continuously monitor blink rate and duration in real time.",
   },
   {
     step: "02",
     icon: Zap,
     title: "Trigger Local Alert",
     description:
-      "The moment fatigue or microsleep is detected, the system fires an immediate multi-sensory alert — haptic vibrations, audio tones, and visual warnings.",
+      "The moment fatigue or microsleep is detected, the system fires an immediate multi-sensory alert — providing loud audio tones and visual warnings to rouse the driver.",
   },
   {
     step: "03",

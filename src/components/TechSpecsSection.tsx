@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import HardwareHologram from "./HardwareHologram";
-import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car } from "lucide-react";
+import { Cpu, Eye, Zap, Battery, Gauge, Radio, Car, Brain } from "lucide-react";
 
 const specs = [
   { icon: Cpu, label: "ESP32", detail: "Dual-core 240MHz", color: "text-accent" },
@@ -9,9 +9,10 @@ const specs = [
   { icon: Zap, label: "Latency", detail: "< 50ms response", color: "text-accent" },
   { icon: Battery, label: "Battery", detail: "12h continuous use", color: "text-accent" },
   { icon: Gauge, label: "Power Draw", detail: "< 80mA average", color: "text-accent" },
-  { icon: Radio, label: "Connectivity", detail: "BLE 5.0 + Wi-Fi", color: "text-accent" },
-  { icon: Car, label: "Vehicle Link", detail: "CAN bus / OBD-II command", color: "text-accent" },
+  { icon: Radio, label: "Connectivity", detail: "BLE 5.0 + ESP-NOW / Wi-Fi", color: "text-accent" },
+  { icon: Car, label: "Vehicle Link", detail: "PWM Motor Control / CAN bus ready", color: "text-accent" },
   { icon: Zap, label: "Autonomy", detail: "Direct parking command", color: "text-accent" },
+  { icon: Brain, label: "Processing", detail: "Real-time Edge Computing", color: "text-accent" },
 ];
 
 const TechSpecsSection = () => (

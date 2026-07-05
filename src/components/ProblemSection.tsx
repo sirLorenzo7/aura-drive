@@ -3,8 +3,8 @@ import ScrollReveal from "./ScrollReveal";
 import { AlertTriangle } from "lucide-react";
 
 const stats = [
-  { value: "100,000+", label: "Over 100,000 police-reported crashes annually in the US are caused by drowsy driving." },
-  { value: "20%", label: "Up to 20% of all fatal highway accidents involve driver fatigue or microsleep." },
+  { value: "Millions", label: "Millions of road accidents worldwide are attributed to driver fatigue and microsleeps every year." },
+  { value: "20%", label: "Up to 20% of all fatal highway accidents globally involve driver fatigue." },
   { value: "100 Meters", label: "A 3-second microsleep at highway speeds means the car travels over 100 meters completely uncontrolled." },
 ];
 
@@ -94,7 +94,7 @@ const ProblemSection = () => (
       <div className="mt-16 grid gap-6 md:grid-cols-3">
         {stats.map((stat, i) => (
           <ScrollReveal key={stat.value} delay={i * 0.15}>
-            <div className="rounded-2xl border border-border bg-card p-8">
+            <div className="rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-[0_0_30px_-10px_hsl(var(--accent)/0.2)]">
               <p className="text-4xl font-bold text-foreground md:text-5xl">
                 {stat.value}
               </p>
