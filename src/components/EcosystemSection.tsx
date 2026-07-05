@@ -19,7 +19,7 @@ const EcosystemSection = () => (
           <span className="text-muted-foreground">Everywhere.</span>
         </h2>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Awakelens doesn't work alone. It syncs with your phone and watch to create a complete safety network.
+          Awakelens doesn't work alone. It syncs with your phone to create a complete safety network.
         </p>
       </ScrollReveal>
 
