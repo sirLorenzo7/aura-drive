@@ -123,15 +123,11 @@ const ProblemSection = () => (
         ))}
       </div>
 
-      <ScrollReveal delay={0.2}>
-        <div className="mt-20 flex flex-col items-center gap-16">
-          {videoEmbeds.map((video, i) => (
-            <ScrollReveal key={video.id} delay={i * 0.1}>
-              <ScrollVideo id={video.id} title={video.title} />
-            </ScrollReveal>
-          ))}
-        </div>
-      </ScrollReveal>
+      <div className="mt-20 flex flex-col items-center gap-16 w-full">
+        {videoEmbeds.map((video) => (
+          <ScrollVideo key={video.id} id={video.id} title={video.title} />
+        ))}
+      </div>
     </div>
   </section>
 );
