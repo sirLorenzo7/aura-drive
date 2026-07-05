@@ -12,52 +12,68 @@ const videoEmbeds = [
   {
     id: "2jDllo6fdBg",
     title: "Drowsy driving awareness video 1",
-    embedUrl: "https://www.youtube.com/embed/2jDllo6fdBg?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=2jDllo6fdBg",
   },
   {
     id: "4hCO_2vTGIo",
     title: "Drowsy driving awareness video 2",
-    embedUrl: "https://www.youtube.com/embed/4hCO_2vTGIo?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=4hCO_2vTGIo",
   },
   {
     id: "OZxcV3oKhgQ",
     title: "Drowsy driving awareness video 3",
-    embedUrl: "https://www.youtube.com/embed/OZxcV3oKhgQ?autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=OZxcV3oKhgQ",
   },
 ];
 
-const LazyVideo = ({ embedUrl, title }: { embedUrl: string; title: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+const buildEmbedUrl = (id: string) =>
+  `https://www.youtube.com/embed/${id}?enablejsapi=1&autoplay=1&mute=1&loop=1&controls=0&rel=0&playsinline=1&modestbranding=1&playlist=${id}`;
+
+const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = wrapRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
+          const fullyVisible = entry.intersectionRatio >= 0.85;
+          if (fullyVisible) {
+            setMounted(true);
+            setPlaying(true);
+          } else {
+            setPlaying(false);
           }
         });
       },
-      { rootMargin: "150px", threshold: 0.25 }
+      { threshold: [0, 0.5, 0.85, 1] }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe || !iframe.contentWindow) return;
+    const command = playing ? "playVideo" : "pauseVideo";
+    iframe.contentWindow.postMessage(
+      JSON.stringify({ event: "command", func: command, args: [] }),
+      "*"
+    );
+  }, [playing, mounted]);
+
   return (
     <div
-      ref={ref}
-      className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_50px_-10px_hsl(var(--accent)/0.3)]"
+      ref={wrapRef}
+      className="group relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_60px_-10px_hsl(var(--accent)/0.35)]"
     >
-      <div className="relative aspect-video pointer-events-none">
-        {visible ? (
+      <div className="relative aspect-[9/16] pointer-events-none">
+        {mounted ? (
           <iframe
+            ref={iframeRef}
             className="absolute inset-0 h-full w-full"
-            src={embedUrl}
+            src={buildEmbedUrl(id)}
             title={title}
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -107,10 +123,10 @@ const ProblemSection = () => (
       </div>
 
       <ScrollReveal delay={0.2}>
-        <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 flex flex-col items-center gap-16">
           {videoEmbeds.map((video, i) => (
             <ScrollReveal key={video.id} delay={i * 0.1}>
-              <LazyVideo embedUrl={video.embedUrl} title={video.title} />
+              <ScrollVideo id={video.id} title={video.title} />
             </ScrollReveal>
           ))}
         </div>
