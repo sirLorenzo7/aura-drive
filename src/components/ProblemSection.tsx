@@ -38,8 +38,7 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const fullyVisible = entry.intersectionRatio >= 0.85;
-          if (fullyVisible) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             setMounted(true);
             setPlaying(true);
           } else {
@@ -47,7 +46,7 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
           }
         });
       },
-      { threshold: [0, 0.5, 0.85, 1] }
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
     observer.observe(el);
     return () => observer.disconnect();
