@@ -38,8 +38,7 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const fullyVisible = entry.intersectionRatio >= 0.85;
-          if (fullyVisible) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             setMounted(true);
             setPlaying(true);
           } else {
@@ -47,7 +46,7 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
           }
         });
       },
-      { threshold: [0, 0.5, 0.85, 1] }
+      { threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -66,9 +65,9 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
   return (
     <div
       ref={wrapRef}
-      className="group relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_60px_-10px_hsl(var(--accent)/0.35)]"
+      className="group relative mx-auto w-full max-w-[420px] overflow-hidden rounded-3xl border border-border bg-card shadow-[0_0_40px_-15px_hsl(var(--accent)/0.25)] transition-all duration-500 hover:border-accent/40 hover:shadow-[0_0_60px_-10px_hsl(var(--accent)/0.4)]"
     >
-      <div className="relative aspect-[9/16] pointer-events-none">
+      <div className="relative aspect-[9/16] w-full">
         {mounted ? (
           <iframe
             ref={iframeRef}
@@ -81,7 +80,9 @@ const ScrollVideo = ({ id, title }: { id: string; title: string }) => {
             referrerPolicy="strict-origin-when-cross-origin"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-secondary to-card" />
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-secondary to-card">
+            <div className="h-10 w-10 animate-pulse rounded-full bg-accent/30" />
+          </div>
         )}
       </div>
     </div>
@@ -122,15 +123,11 @@ const ProblemSection = () => (
         ))}
       </div>
 
-      <ScrollReveal delay={0.2}>
-        <div className="mt-20 flex flex-col items-center gap-16">
-          {videoEmbeds.map((video, i) => (
-            <ScrollReveal key={video.id} delay={i * 0.1}>
-              <ScrollVideo id={video.id} title={video.title} />
-            </ScrollReveal>
-          ))}
-        </div>
-      </ScrollReveal>
+      <div className="mt-20 flex flex-col items-center gap-16 w-full">
+        {videoEmbeds.map((video) => (
+          <ScrollVideo key={video.id} id={video.id} title={video.title} />
+        ))}
+      </div>
     </div>
   </section>
 );
